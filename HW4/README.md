@@ -239,9 +239,7 @@ To fully reproduce the results:
 
 ## 10. Report
 
-The final report is available in two formats:
-- `HW4_Report.html` — Open in browser, print to PDF
-- `HW4_Report.md` — Markdown format for GitHub
+The final report will be uploaded on Canvas.
 
 The report includes:
 - GA implementation details and results
