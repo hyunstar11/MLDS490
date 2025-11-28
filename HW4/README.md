@@ -46,20 +46,20 @@ Required packages:
 ## 2. Project Structure
 
 ```text
-mlds_hw4/
-├── hw4_q1.py                 # Genetic Algorithm implementation (Part 1)
-├── hw4_q1_config.yaml        # GA configuration (population size, generations, etc.)
-├── hw4_q2.py                 # Bayesian Optimization implementation (Part 2)
-├── hw4_q2_config.yaml        # BO configuration (iterations, bounds, etc.)
-├── hw4_test.py               # Final model training & test evaluation
-├── hw4_test_ga.yaml          # Test config using GA-selected hyperparameters
-├── hw4_test_bo.yaml          # Test config using BO-selected hyperparameters
-├── train_data.npy            # Training data (EMNIST digits, 100 clients)
-├── test_data.npy             # Test data (EMNIST digits)
+HW4/
+├── README.md                 # This file
 ├── HW4_Report.html           # Final report (HTML format)
 ├── HW4_Report.md             # Final report (Markdown format)
-├── README.md                 # This file
-└── artifacts/
+├── src/                      # Source code
+│   ├── hw4_q1.py             # Genetic Algorithm implementation (Part 1)
+│   ├── hw4_q2.py             # Bayesian Optimization implementation (Part 2)
+│   └── hw4_test.py           # Final model training & test evaluation
+├── configs/                  # Configuration files
+│   ├── hw4_q1_config.yaml    # GA configuration (population size, generations, etc.)
+│   ├── hw4_q2_config.yaml    # BO configuration (iterations, bounds, etc.)
+│   ├── hw4_test_ga.yaml      # Test config using GA-selected hyperparameters
+│   └── hw4_test_bo.yaml      # Test config using BO-selected hyperparameters
+└── artifacts/                # Output artifacts
     ├── hyperparameters/      # Saved hyperparameters and test F1 scores
     │   ├── best_hyperparameters_gen_10.txt
     │   ├── best_hyperparameters_gen_20.txt
@@ -75,6 +75,8 @@ mlds_hw4/
         ├── bo_train_f1_curve.png
         └── bo_val_f1_curve_epochwise.png
 ```
+
+**Note**: Data files (`train_data.npy`, `test_data.npy`) are not included in the repository due to size. Place them in the project root when running locally.
 
 ---
 
@@ -94,10 +96,10 @@ The data files (`train_data.npy`, `test_data.npy`) contain federated-style data 
 
 ### 4.1. Run GA hyperparameter search
 
-From the `mlds_hw4/` directory:
+From the `HW4/` directory:
 
 ```bash
-python hw4_q1.py
+python src/hw4_q1.py
 ```
 
 This script:
@@ -108,7 +110,7 @@ This script:
 - Saves best hyperparameters at intervals (gen 10, 20, 30)
 - Generates fitness vs. generation plot
 
-**Configuration** (`hw4_q1_config.yaml`):
+**Configuration** (`configs/hw4_q1_config.yaml`):
 - `population_size`: 10
 - `num_generations`: 30
 - `mutation_rate`: 0.2
@@ -134,7 +136,7 @@ This script:
 ### 5.1. Run BO hyperparameter search
 
 ```bash
-python hw4_q2.py
+python src/hw4_q2.py
 ```
 
 This script:
@@ -143,7 +145,7 @@ This script:
 - Runs 20 iterations (5 random + 15 guided)
 - Saves best hyperparameters and progress plot
 
-**Configuration** (`hw4_q2_config.yaml`):
+**Configuration** (`configs/hw4_q2_config.yaml`):
 - `n_iter`: 20
 - `batch_size_range`: [16, 1024]
 - `activation_encoding`: 0=ReLU, 1=Tanh, 2=Sigmoid
@@ -169,7 +171,7 @@ After hyperparameter search, train the final model on **combined train+validatio
 ### 6.1. Evaluate GA-selected hyperparameters
 
 ```bash
-python hw4_test.py --config hw4_test_ga.yaml
+python src/hw4_test.py --config configs/hw4_test_ga.yaml
 ```
 
 **Output**:
@@ -179,7 +181,7 @@ python hw4_test.py --config hw4_test_ga.yaml
 ### 6.2. Evaluate BO-selected hyperparameters
 
 ```bash
-python hw4_test.py --config hw4_test_bo.yaml
+python src/hw4_test.py --config configs/hw4_test_bo.yaml
 ```
 
 **Output**:
