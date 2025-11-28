@@ -48,8 +48,6 @@ Required packages:
 ```text
 HW4/
 ├── README.md                 # This file
-├── HW4_Report.html           # Final report (HTML format)
-├── HW4_Report.md             # Final report (Markdown format)
 ├── src/                      # Source code
 │   ├── hw4_q1.py             # Genetic Algorithm implementation (Part 1)
 │   ├── hw4_q2.py             # Bayesian Optimization implementation (Part 2)
