@@ -1,0 +1,26 @@
+# hw4_q1_config.yaml
+
+data_paths:
+  train_data: "./train_data.npy"
+  test_data: "./test_data.npy"      # not used by Q1 but kept for consistency
+
+random_seed: 1024
+
+plot_save_path: "artifacts/plots"
+hyperparameters_save_path: "artifacts/hyperparameters"
+
+gpu_id: 3   # ignored if not available
+
+genetic_algorithm:
+  population_size: 30        # or whatever the PDF says
+  replacement_proportion: 0.5
+  num_generations: 30
+  mutation_rate: 0.3
+  learning_rate: 0.01
+  epochs: 6                  # 3–5 is usually enough
+  hidden_layer_size: 256
+  num_classes: 10            # ignored, overwritten by code
+  batch_size_range: [16, 1024]
+  activation_funcs: ["relu", "tanh", "sigmoid"]
+
+save_interval: 10

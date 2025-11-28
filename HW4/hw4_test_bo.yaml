@@ -1,0 +1,36 @@
+device: cuda
+
+data:
+  train_data_path: ./train_data.npy
+  test_data_path: ./test_data.npy
+
+data_split:
+  val_size: 0.2
+  random_state: 42
+
+model:
+  hidden_dim: 256           # or whatever you used in BO experiments
+  activation: relu          # ← set to BO best activation
+
+optimizer:
+  lr: 0.01                  # same as BO optimization runs
+  momentum: 0.9
+
+training:
+  batch_size: 256           # ← set to BO best batch size
+  epochs: 20
+
+testing:
+  batch_size: 128
+
+plot:
+  enable: true
+  title: "BO best hyperparameters – training F1 vs epoch"
+  train_path: "artifacts/plots/bo_train_f1_curve.png"
+  save_val_curve: true
+  val_title: "BO best hyperparameters – validation F1 vs epoch"
+  val_path: "artifacts/plots/bo_val_f1_curve_epochwise.png"
+
+metrics:
+  save_test_f1: true
+  path: "artifacts/hyperparameters/bo_test_f1.txt"

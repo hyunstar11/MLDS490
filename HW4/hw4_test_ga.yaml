@@ -1,0 +1,36 @@
+device: cuda
+
+data:
+  train_data_path: ./train_data.npy
+  test_data_path: ./test_data.npy
+
+data_split:
+  val_size: 0.2
+  random_state: 42
+
+model:
+  hidden_dim: 256           # or whatever you used in GA search
+  activation: relu          # ← set to GA best activation
+
+optimizer:
+  lr: 0.01                  # learning rate you used for GA search
+  momentum: 0.9
+
+training:
+  batch_size: 128           # ← set to GA best batch size
+  epochs: 20
+
+testing:
+  batch_size: 128
+
+plot:
+  enable: true
+  title: "GA best hyperparameters – training F1 vs epoch"
+  train_path: "artifacts/plots/ga_train_f1_curve.png"
+  save_val_curve: true
+  val_title: "GA best hyperparameters – validation F1 vs epoch"
+  val_path: "artifacts/plots/ga_val_f1_curve.png"
+
+metrics:
+  save_test_f1: true
+  path: "artifacts/hyperparameters/ga_test_f1.txt"

@@ -1,0 +1,3 @@
+Batch Size: 120
+Activation Function: tanh
+F1 Score: 0.49232844347661403

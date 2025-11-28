@@ -1,0 +1,2 @@
+Batch Size: 42
+Activation Function: relu
